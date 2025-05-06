@@ -1,0 +1,1 @@
+praticando consumo de api utilizando a pokeAPI

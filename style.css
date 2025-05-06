@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("fundoPokemon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+h1 {
+  font-family: "PokemonFont", sans-serif;
+  display: block;
+  font-size: 100px;
+  color: yellow;
+}
+
+nav {
+  background-color: #3486e2d2;
+  margin: auto 2px;
+  border-radius: 10px;
+}
+
+.nav-link {
+  margin: 2px;
+  text-decoration: none;
+  color: #000000 !important;
+}
+
+.nav-link:hover {
+  background-color: #e24034d2;
+  color: yellow !important;
+  transform: scale(1.05);
+}
+
+.containerPokedex {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.containerCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.containerCard .card {
+  padding: 10px;
+  max-width: 240px;
+  margin: 10px auto;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.5em;
+}
+
+.containerCard .card:hover {
+  transform: scale(1.05);
+}
+
+@font-face {
+  font-family: "PokemonFont";
+  src: url(pocket-monk-font/PocketMonk-15ze.ttf);
+}
+
+.tipo-normal {
+  background-color: #d3d3d3;
+  color: black;
+}
+
+.tipo-fire {
+  background-color: #ffa500;
+}
+
+.tipo-water {
+  background-color: #00008b;
+  color: #ffffff !important;
+}
+
+.tipo-grass {
+  background-color: #008000;
+  color: #ffffff !important;
+}
+
+.tipo-electric {
+  background-color: #ffff00;
+  color: black;
+}
+
+.tipo-psychic {
+  background-color: #dda0dd;
+}
+
+.tipo-ice {
+  background-color: #add8e6;
+  color: black;
+}
+
+.tipo-dragon {
+  background-color: #800080;
+}
+
+.tipo-dark {
+  background-color: #000000;
+}
+
+.tipo-fairy {
+  background-color: #ffb6c1;
+  color: black;
+}
+
+.tipo-fighting {
+  background-color: #8b0000;
+}
+
+.tipo-flying {
+  background-color: #add8e6;
+  color: black;
+}
+
+.tipo-poison {
+  background-color: #800080;
+}
+
+.tipo-ground {
+  background-color: #d2b48c;
+  color: black;
+}
+
+.tipo-rock {
+  background-color: #8b4513;
+}
+
+.tipo-bug {
+  background-color: #90ee90;
+  color: black;
+}
+
+.tipo-ghost {
+  background-color: #696969;
+}
+
+.tipo-steel {
+  background-color: #b0c4de;
+  color: black;
+}
+
+#containerCard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
