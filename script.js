@@ -1,28 +1,17 @@
-// criando um evento DomContentLoaded para que ao abrir o codigo já iniciar chamando a api para o codigo
-//ao chamar api gostaria que já pegasse os dados que eu quero trabalhar que são os ID,Nome,Tipos e Imagens do pokemon
 document.addEventListener("DOMContentLoaded", async function pokedexFull() {
-  //pegando o containerCard que é onde irei inserir cards com as informações
   let containerCard = document.getElementById("containerCard");
-  //definindo uma quantidade para não aparecer muitos pokemons em minha tela
   const quantidade = 100;
 
-  //criei um loop para percorrer pelo api com base no id do pokemon e na quantidade definida
   for (let i = 1; i <= quantidade; i++) {
-    //chamando api usando o i para percorrer o id
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
-    const data = await response.json(); //convertendo para json para conseguir trabalhar com os dados
+    const data = await response.json();
 
-    //pegando o id,nome,tipo e a imagem do pokemon
     const idPokemon = data.id;
     const nome = data.name;
-    //o uso do map é porque um pokemon pode ter +1 de um tipo,dai cria um array com os tipos e depois eu peço para mostrar
     const tipo = data.types.map((types) => types.type.name);
 
     const imagemPokemon = document.createElement("img");
-    imagemPokemon.src = data.sprites.other["official-artwork"].front_default; //pegando a imagem padrão,pois tem varias imagems
-
-    //criando elementos html, inserindo os dados adquiridos neles e
-    //colocando eles dentro do containerCard atraves da div CardPokemon
+    imagemPokemon.src = data.sprites.other["official-artwork"].front_default;
 
     let idText = document.createElement("p");
     idText.textContent = idPokemon;
@@ -32,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async function pokedexFull() {
     tipoText.textContent = tipo;
 
     let cardPokemon = document.createElement("div");
-    cardPokemon.classList.add("card"); // inserindo uma classe para poder estilizar
+    cardPokemon.classList.add("card");
     containerCard.appendChild(cardPokemon);
     cardPokemon.appendChild(imagemPokemon);
     cardPokemon.appendChild(idText);
@@ -67,28 +56,28 @@ document.addEventListener("DOMContentLoaded", async function pokedexFull() {
       } else if (types.includes("dark")) {
         cardElement.style.backgroundColor = "#000000";
         cardElement.classList.add("tipo-dark");
-        cardElement.style.color = "white"; // Garante que o texto seja visível
+        cardElement.style.color = "white";
       } else if (types.includes("fairy")) {
         cardElement.style.backgroundColor = "#FFB6C1";
         cardElement.classList.add("tipo-fairy");
       } else if (types.includes("fighting")) {
         cardElement.style.backgroundColor = "#8B4513";
         cardElement.classList.add("tipo-fighting");
-        cardElement.style.color = "white"; // Garante que o texto seja visível
+        cardElement.style.color = "white";
       } else if (types.includes("flying")) {
         cardElement.style.backgroundColor = "#ADD8E6";
         cardElement.classList.add("tipo-flying");
       } else if (types.includes("poison")) {
         cardElement.style.backgroundColor = "#800080";
         cardElement.classList.add("tipo-poison");
-        cardElement.style.color = "white"; // Garante que o texto seja visível
+        cardElement.style.color = "white";
       } else if (types.includes("ground")) {
         cardElement.style.backgroundColor = "#D2B48C";
         cardElement.classList.add("tipo-ground");
       } else if (types.includes("rock")) {
         cardElement.style.backgroundColor = "#8B4513";
         cardElement.classList.add("tipo-rock");
-        cardElement.style.color = "white"; // Garante que o texto seja visível
+        cardElement.style.color = "white";
       } else if (types.includes("bug")) {
         cardElement.style.backgroundColor = "#90EE90";
         cardElement.classList.add("tipo-bug");
