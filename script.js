@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", async function pokedexFull() {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
     const data = await response.json();
 
+    console.log(data);
+
     const idPokemon = data.id;
     const nome = data.name;
     const tipo = data.types.map((types) => types.type.name);
@@ -91,6 +93,10 @@ document.addEventListener("DOMContentLoaded", async function pokedexFull() {
     }
 
     BackgroundColor(cardPokemon, tipo);
+
+    cardPokemon.addEventListener("click", () => {
+      console.log(idPokemon, nome, tipo);
+    });
   }
 });
 
