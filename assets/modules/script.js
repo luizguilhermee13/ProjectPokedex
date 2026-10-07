@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", async function pokedexFull() {
+/* document.addEventListener("DOMContentLoaded", async function pokedexFull() {
   let containerCard = document.getElementById("containerCard");
-  const quantidade = 100;
+  const quantidade = 14;
 
   for (let i = 1; i <= quantidade; i++) {
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`);
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async function pokedexFull() {
       console.log(idPokemon, nome, tipo);
     });
   }
-});
+});*/
 
 /* cores
 Normal: Bege (#F5F5DC), Cinza claro (#D3D3D3)
