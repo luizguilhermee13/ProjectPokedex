@@ -4,15 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex API</title>
+    <link rel="shortcut icon" href="./assets/logoPokedex.png" type="image/x-icon" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="./assets/css/grid-layout.css" />
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
+    <header class="font-serif">
+      <div class="logo text-3xl"><h2>Pokedex</h2></div>
+      <div class="sections flex gap-3">
+        <ul class="flex gap-2">
+          <li>Explorar</li>
+          <li>Favoritos</li>
+        </ul>
+        <div class="filtro">
+          <p>&#10084;&#65039;&#65039; <span>0</span></p>
+        </div>
+      </div>
+    </header>
+
     <main>
+      <div class="search">
+        <div class="search-text">
+          <span>Explore o mundo Pokémon</span>
+          <h1>Descubra. Colecione.</h1>
+          <p>Encontre informações, habilidades e estatísticas de cada Pokémon em um só lugar.</p>
+        </div>
+        <div class="search-inputs"><input type="text" placeholder="Filtre" /><button>Buscar</button></div>
+      </div>
+
       <div class="containerPokedex" id="containerPokedex">
         <div class="containerCard" id="containerCard"></div>
       </div>
     </main>
+
+    <footer><span>Dados fornecidos pela PokéAPI</span><span>Projeto para fins de estudo</span></footer>
     <script src="./assets/modules/script.js"></script>
   </body>
 </html>

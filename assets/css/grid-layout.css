@@ -1,0 +1,45 @@
+body {
+  display: grid;
+  max-width: 1980px;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  background: #f8f6f2;
+  backdrop-filter: blur(1rem);
+}
+
+header,
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+main,
+footer {
+  border-top: 0px none rgba(248, 246, 242, 1);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.logo h2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.logo h2::before {
+  content: "";
+  display: block;
+  background-image: url("../logoPokedex.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
