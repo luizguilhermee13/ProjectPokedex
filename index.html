@@ -10,12 +10,12 @@
     <link href="./output.css" rel="stylesheet" />
   </head>
   <body>
-    <header class="font-serif">
+    <header class="font-ManropeBlack">
       <div class="logo text-3xl"><h2>Pokedex</h2></div>
-      <div class="sections flex gap-3">
-        <ul class="flex gap-2">
-          <li>Explorar</li>
-          <li>Favoritos</li>
+      <div class="sections flex gap-4">
+        <ul class="flex gap-4">
+          <li class="text-[#ef4035]">Explorar</li>
+          <li class="text-[#0000008C]">Favoritos</li>
         </ul>
         <div class="filtro">
           <p>&#10084;&#65039;&#65039; <span>0</span></p>
@@ -24,16 +24,37 @@
     </header>
 
     <main>
-      <div class="search">
-        <div class="search-text">
-          <span>Explore o mundo Pokémon</span>
-          <h1>Descubra. Colecione.</h1>
-          <p>Encontre informações, habilidades e estatísticas de cada Pokémon em um só lugar.</p>
+      <div class="search hero-grid">
+        <div class="pokeball-decoration" aria-hidden="true">
+          <span class="pokeball-mark"></span>
         </div>
-        <div class="search-inputs"><input type="text" placeholder="Filtre" /><button>Buscar</button></div>
+
+        <div class="search-text">
+          <span class="font-ManropeBlack text-[#ef4035]">&#128165; Explore o mundo Pokémon </span>
+
+          <h1 class="font-spaceBlack text-8xl">
+            Descubra.
+            <span class="text-[#ef4035]">Colecione.</span>
+          </h1>
+
+          <p class="font-ManropeWhite text-2xl text-[#0000008C] leading-6">
+            Encontre informações, habilidades e estatísticas de cada Pokémon em um só lugar.
+          </p>
+
+          <form class="search-inputs gap-3">
+            <label for="search-id-pokemon" class="search-field bg-white rounded-2xl px-5 py-4">
+              🔎
+              <input class="font-ManropeWhite" type="text" id="search-id-pokemon" placeholder="Busque por nome ou número..." />
+            </label>
+
+            <button type="submit" class="search-button bg-black font-ManropeWhite rounded-lg px-8 py-4">
+              Buscar <span aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
       </div>
 
-      <div class="containerPokedex" id="containerPokedex">
+      <div class="containerPokedex border-2 border-amber-50" id="containerPokedex">
         <div class="containerCard" id="containerCard"></div>
       </div>
     </main>

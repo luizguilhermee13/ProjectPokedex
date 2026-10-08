@@ -1,1 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Space+Grotesk:wght@400;700&display=swap");
+
 @import "tailwindcss";
+
+@layer components {
+  .font-spaceBlack {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+  }
+
+  .font-ManropeWhite {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+  }
+  .font-ManropeBlack {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+  }
+}

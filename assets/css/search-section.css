@@ -1,0 +1,134 @@
+/* layout section busca*/
+.hero-grid {
+  padding: 6rem 2.5rem;
+  background-color: #f7f6f2;
+  background-image:
+    linear-gradient(rgba(23, 25, 21, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 25, 21, 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* div com titulos,input e button*/
+.search-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 768px;
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* input de busca por nome ou id*/
+form {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: 100%;
+}
+
+.search-inputs {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 1rem;
+  min-width: 0;
+}
+
+.search-field input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+}
+
+.search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem;
+  background-color: #171916;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+/* Pokebola que fica ao fundo da div search*/
+/* Container da Pokébola */
+.pokeball-decoration {
+  position: absolute;
+  width: 510px;
+  height: 510px;
+  top: -170px;
+  right: -100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Círculo vermelho externo */
+.pokeball-decoration::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 110px solid rgba(239, 64, 53, 0.08);
+  border-radius: 50%;
+}
+
+/* Estrutura principal da Pokébola */
+.pokeball-mark {
+  position: relative;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border: 7px solid currentColor;
+  border-radius: 50%;
+  color: #171916;
+  opacity: 0.035;
+  transform: scale(7);
+}
+
+/* Linha horizontal */
+.pokeball-mark::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 7px;
+  background: currentColor;
+  transform: translateY(-50%);
+}
+
+/* Botão central */
+.pokeball-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  border: 6px solid currentColor;
+  border-radius: 50%;
+  background: #f7f6f2;
+  transform: translate(-50%, -50%);
+}
