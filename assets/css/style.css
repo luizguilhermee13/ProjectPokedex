@@ -34,10 +34,11 @@
 
 #containerCard .card img {
   max-width: 100%;
-  width: 20rem;
-  height: 20rem;
+  width: 14rem;
+  height: 14rem;
   position: relative;
   box-sizing: border-box;
   object-fit: contain;
   display: block;
+  margin: 0 auto;
 }
