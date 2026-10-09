@@ -15,8 +15,9 @@
 #containerCard {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
+  gap: calc(var(--spacing) * 4);
   cursor: pointer;
+  box-sizing: border-box;
 }
 
 #containerCard .card {
@@ -26,6 +27,7 @@
   border-radius: 28px;
   box-sizing: border-box;
   overflow: hidden;
+  font-family: spaceBlack;
 }
 
 #containerCard .card:hover {

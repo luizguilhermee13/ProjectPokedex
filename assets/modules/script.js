@@ -33,10 +33,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     cardPokemon.classList.add("card", `tipo-${item.tipo[0]}`);
 
     cardPokemon.innerHTML = `
+    <p class="flex justify-between">${item.idPokemon} <span>&#10084;&#65039;&#65039;</span></p>
       <img src="${item.imagemPokemon}" alt="${item.nome}" />
-      <p>${item.idPokemon}</p>
-      <p>${item.nome}</p>
       <p>${item.tipo.join(", ")}</p>
+      <p class="text-2xl font-bold to-black">${item.nome}</p>
+      
     `;
 
     containerCard.appendChild(cardPokemon);
