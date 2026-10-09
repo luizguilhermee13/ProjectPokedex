@@ -25,6 +25,7 @@
 
     <main>
       <div class="search hero-grid">
+        <!-- pokebola no fundo  -->
         <div class="pokeball-decoration" aria-hidden="true">
           <span class="pokeball-mark"></span>
         </div>
@@ -55,17 +56,29 @@
       </div>
 
       <div class="containerPokedex border-2 border-amber-50" id="containerPokedex">
-        <div class="catalago-header bg-amber-300">
-          <p class="font-ManropeWhite text-lg text-[#0000008C]">Catálogo nacional</p>
-          <h2 class="font-spaceBlack text-4xl">Conheça os Pokémon</h2>
-          <div>todos</div>
-          <!-- dados via api (tipos dde pokemon)  -->
+        <!-- titulo e filtros main  -->
+        <div class="catalago-header">
+          <p class="font-ManropeBlack text-sm uppercase text-[#0000008C]">Catálogo nacional</p>
+          <h2 class="font-spaceBlack text-4xl flex justify-between items-center">
+            Conheça os Pokémon <span class="font-ManropeWhite text-sm uppercase text-[#0000008C]">&#128190; 18 resultados</span>
+          </h2>
+          <div>
+            <p class="bg-black font-ManropeWhite rounded-2xl flex justify-center items-center w-16 h-8 text-white">todos</p>
+          </div>
         </div>
-        <div class="catalago-pokemons bg-blue-900" id="containerCard">dados via fetch- fetch dos pokemons</div>
+
+        <!-- catalago pokemons  -->
+        <div class="catalago-pokemons">
+          <div id="containerCard"></div>
+          <!-- dados via api (tipos de pokemon)  -->
+        </div>
       </div>
     </main>
 
-    <footer><span>Dados fornecidos pela PokéAPI</span><span>Projeto para fins de estudo</span></footer>
+    <footer>
+      <span>Dados fornecidos pela PokéAPI</span>
+      <span>Projeto para fins de estudo</span>
+    </footer>
     <script src="./assets/modules/script.js"></script>
   </body>
 </html>

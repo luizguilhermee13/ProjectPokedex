@@ -1,0 +1,13 @@
+.containerPokedex {
+  padding: 3.5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.catalago-header {
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}

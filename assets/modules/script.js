@@ -1,4 +1,4 @@
-/* document.addEventListener("DOMContentLoaded", async function pokedexFull() {
+document.addEventListener("DOMContentLoaded", async function pokedexFull() {
   let containerCard = document.getElementById("containerCard");
   const quantidade = 14;
 
@@ -98,7 +98,7 @@
       console.log(idPokemon, nome, tipo);
     });
   }
-});*/
+});
 
 /* cores
 Normal: Bege (#F5F5DC), Cinza claro (#D3D3D3)

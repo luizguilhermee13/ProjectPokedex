@@ -7,19 +7,14 @@
     --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
       "Noto Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol", "Noto Color Emoji";
-    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-amber-50: oklch(98.7% 0.022 95.277);
-    --color-amber-300: oklch(87.9% 0.169 91.605);
-    --color-blue-900: oklch(37.9% 0.146 265.522);
     --color-black: #000;
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-lg: 1.125rem;
-    --text-lg--line-height: calc(1.75 / 1.125);
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
@@ -189,6 +184,12 @@
   .table {
     display: table;
   }
+  .h-8 {
+    height: calc(var(--spacing) * 8);
+  }
+  .w-16 {
+    width: calc(var(--spacing) * 16);
+  }
   .flex-shrink {
     flex-shrink: 1;
   }
@@ -207,17 +208,17 @@
   .items-center {
     align-items: center;
   }
-  .gap-2 {
-    gap: calc(var(--spacing) * 2);
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .gap-3 {
     gap: calc(var(--spacing) * 3);
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
-  }
-  .gap-8 {
-    gap: calc(var(--spacing) * 8);
   }
   .rounded-2xl {
     border-radius: var(--radius-2xl);
@@ -236,14 +237,8 @@
   .border-amber-50 {
     border-color: var(--color-amber-50);
   }
-  .bg-amber-300 {
-    background-color: var(--color-amber-300);
-  }
   .bg-black {
     background-color: var(--color-black);
-  }
-  .bg-blue-900 {
-    background-color: var(--color-blue-900);
   }
   .bg-white {
     background-color: var(--color-white);
@@ -256,9 +251,6 @@
   }
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
-  }
-  .font-serif {
-    font-family: var(--font-serif);
   }
   .text-2xl {
     font-size: var(--text-2xl);
@@ -276,13 +268,9 @@
     font-size: var(--text-8xl);
     line-height: var(--tw-leading, var(--text-8xl--line-height));
   }
-  .text-lg {
-    font-size: var(--text-lg);
-    line-height: var(--tw-leading, var(--text-lg--line-height));
-  }
-  .text-xl {
-    font-size: var(--text-xl);
-    line-height: var(--tw-leading, var(--text-xl--line-height));
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
   }
   .leading-6 {
     --tw-leading: calc(var(--spacing) * 6);
@@ -296,6 +284,9 @@
   }
   .text-white {
     color: var(--color-white);
+  }
+  .uppercase {
+    text-transform: uppercase;
   }
   .underline {
     text-decoration-line: underline;
@@ -321,6 +312,72 @@
   .font-ManropeBlack {
     font-family: "Manrope", sans-serif;
     font-weight: 800;
+  }
+  [class*="tipo-"] {
+    box-shadow: inset 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  .tipo-normal {
+    background-color: #d3d3d3;
+    color: black;
+  }
+  .tipo-fire {
+    background-color: #ffa500;
+  }
+  .tipo-water {
+    background-color: #00008b;
+  }
+  .tipo-grass {
+    background-color: #008000;
+  }
+  .tipo-electric {
+    background-color: #ffff00;
+    color: black;
+  }
+  .tipo-psychic {
+    background-color: #dda0dd;
+  }
+  .tipo-ice {
+    background-color: #add8e6;
+    color: black;
+  }
+  .tipo-dragon {
+    background-color: #800080;
+  }
+  .tipo-dark {
+    background-color: #000000;
+  }
+  .tipo-fairy {
+    background-color: #ffb6c1;
+    color: black;
+  }
+  .tipo-fighting {
+    background-color: #8b0000;
+  }
+  .tipo-flying {
+    background-color: #add8e6;
+    color: black;
+  }
+  .tipo-poison {
+    background-color: #800080;
+  }
+  .tipo-ground {
+    background-color: #d2b48c;
+    color: black;
+  }
+  .tipo-rock {
+    background-color: #8b4513;
+  }
+  .tipo-bug {
+    background-color: #90ee90;
+    color: black;
+  }
+  .tipo-ghost {
+    background-color: #696969;
+  }
+  .tipo-steel {
+    background-color: #b0c4de;
+    color: black;
   }
 }
 @property --tw-rotate-x {
