@@ -48,3 +48,10 @@ main {
   display: grid;
   grid-template-rows: 1fr 2fr;
 }
+
+.containerPokedex {
+  padding: 3.5rem 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr) minmax(0, 4fr);
+}
