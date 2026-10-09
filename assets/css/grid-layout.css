@@ -3,10 +3,9 @@ body {
   max-width: 1980px;
   width: 100%;
   min-height: 100vh;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 16fr 1fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
   background: #f8f6f2;
-  backdrop-filter: blur(1rem);
 }
 
 header,
@@ -46,5 +45,6 @@ footer {
 
 main {
   display: grid;
-  grid-template-rows: 1fr 2fr;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
 }
