@@ -18,89 +18,94 @@
   }
 
   /* Estilização dos tipos de Pokémon */
-  /* Estilo compartilhado */
-  [class*="tipo-"] {
-    box-shadow: inset 0px 0px 2px 4px rgba(0, 0, 0, 0.1);
-    color: white;
-  }
 
   .tipo-normal {
-    background-color: #d3d3d3;
-    color: black;
+    --type-color: #797964;
+    --type-bg: #f0f0e8;
   }
 
   .tipo-fire {
-    background-color: #ffa500;
+    --type-color: #e77928;
+    --type-bg: #fff0e3;
   }
 
   .tipo-water {
-    background-color: #00008b;
+    --type-color: #3c78ca;
+    --type-bg: #e6f0ff;
   }
 
   .tipo-grass {
-    background-color: #008000;
+    --type-color: #369753;
+    --type-bg: #e7f4eb;
   }
 
   .tipo-electric {
-    background-color: #ffff00;
-    color: black;
+    --type-color: #a88400;
+    --type-bg: #fff6cb;
   }
 
   .tipo-psychic {
-    background-color: #dda0dd;
+    --type-color: #d14d85;
+    --type-bg: #fde9f1;
   }
 
   .tipo-ice {
-    background-color: #add8e6;
-    color: black;
+    --type-color: #368f9d;
+    --type-bg: #e4f7fa;
   }
 
   .tipo-dragon {
-    background-color: #800080;
+    --type-color: #6950bd;
+    --type-bg: #eee8ff;
   }
 
   .tipo-dark {
-    background-color: #000000;
+    --type-color: #61564e;
+    --type-bg: #eae6e3;
   }
 
   .tipo-fairy {
-    background-color: #ffb6c1;
-    color: black;
+    --type-color: #c55d99;
+    --type-bg: #fbe8f3;
   }
 
   .tipo-fighting {
-    background-color: #8b0000;
+    --type-color: #b44a39;
+    --type-bg: #fae9e5;
   }
 
   .tipo-flying {
-    background-color: #add8e6;
-    color: black;
+    --type-color: #728ecb;
+    --type-bg: #edf1fb;
   }
 
   .tipo-poison {
-    background-color: #800080;
+    --type-color: #93449c;
+    --type-bg: #f3e9f5;
   }
 
   .tipo-ground {
-    background-color: #d2b48c;
-    color: black;
+    --type-color: #a17b38;
+    --type-bg: #f6efdf;
   }
 
   .tipo-rock {
-    background-color: #8b4513;
+    --type-color: #8d7942;
+    --type-bg: #f1eddf;
   }
 
   .tipo-bug {
-    background-color: #90ee90;
-    color: black;
+    --type-color: #699326;
+    --type-bg: #edf5df;
   }
 
   .tipo-ghost {
-    background-color: #696969;
+    --type-color: #7056a0;
+    --type-bg: #eee8f6;
   }
 
   .tipo-steel {
-    background-color: #b0c4de;
-    color: black;
+    --type-color: #647e90;
+    --type-bg: #e8eff3;
   }
 }

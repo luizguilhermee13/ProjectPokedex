@@ -14,33 +14,181 @@
 
 #containerCard {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: calc(var(--spacing) * 4);
-  cursor: pointer;
-  box-sizing: border-box;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
 }
 
+/* Card principal */
 #containerCard .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 350px;
   padding: 24px;
-  max-width: 445px;
-  max-height: 350px;
   border-radius: 28px;
-  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
   overflow: hidden;
-  font-family: spaceBlack;
+  isolation: isolate;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
 }
 
 #containerCard .card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(36, 32, 25, 0.1);
+}
+
+/* Círculo decorativo */
+.card-decoration {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 176px;
+  height: 176px;
+  border-radius: 50%;
+  background-color: var(--type-color, #999);
+  opacity: 0.09;
+  pointer-events: none;
+}
+
+/* Botão coração */
+.card-favorite {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ececea;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: #999;
+  font-size: 25px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.card-favorite:hover,
+.card-favorite.active {
+  color: #ef4035;
+}
+
+/* Imagem e número */
+.card-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 208px;
+}
+
+.card-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 #containerCard .card img {
+  width: 192px;
+  height: 192px;
   max-width: 100%;
-  width: 14rem;
-  height: 14rem;
-  position: relative;
-  box-sizing: border-box;
   object-fit: contain;
-  display: block;
-  margin: 0 auto;
+  filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.13));
+  transition: transform 0.5s;
+}
+
+#containerCard .card:hover img {
+  transform: scale(1.1) rotate(-2deg);
+}
+
+/* Parte inferior */
+.card-bottom {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.card-info {
+  min-width: 0;
+}
+
+.card-types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* Etiquetas */
+.type-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: var(--type-bg, #eee);
+  color: var(--type-color, #555);
+  font-family: "Manrope", sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Nome */
+.card-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: capitalize;
+  color: #171915;
+}
+
+/* Botão de detalhes */
+.card-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f2f1ed;
+  color: #171915;
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover .card-details {
+  background-color: #171915;
+  color: #ffffff;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+  #containerCard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  #containerCard {
+    grid-template-columns: 1fr;
+  }
 }
