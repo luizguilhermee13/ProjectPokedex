@@ -181,6 +181,9 @@
   .flex {
     display: flex;
   }
+  .grid {
+    display: grid;
+  }
   .h-8 {
     height: calc(var(--spacing) * 8);
   }
