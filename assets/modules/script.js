@@ -1,4 +1,9 @@
 const containerCard = document.getElementById("containerCard");
+const containerModal = document.getElementById("modal-pokemon");
+const modalInfo = document.getElementById("modal-info");
+
+const buttonSearch = document.getElementById("searchButton");
+const inputSearch = document.getElementById("searchPokemon");
 
 const nomesTipos = {
   normal: "Normal",
@@ -21,89 +26,130 @@ const nomesTipos = {
   steel: "Aço",
 };
 
-const pokemonsSelecionados = [];
-const buttonSearch = document.querySelector("#searchButton");
+const nomesStatus = {
+  hp: "HP",
+  attack: "Ataque",
+  defense: "Defesa",
+  "special-attack": "Atq. Esp.",
+  "special-defense": "Def. Esp.",
+  speed: "Velocidade",
+};
 
-//preenchimento automatico de 12 pokemons na tela
+const pokemonsSelecionados = [];
+
+let ultimoBotaoDetalhes = null;
+
+// ==========================================
+// 1. BUSCAR POKÉMON NA API
+// ==========================================
+
+async function buscarPokemon(identificador) {
+  const response = await fetch(`http://localhost:3000/api/pokemon/${encodeURIComponent(identificador)}`);
+
+  if (!response.ok) {
+    throw new Error(`Erro ao buscar Pokémon ${identificador}`);
+  }
+
+  const data = await response.json();
+
+  // Organizando os dados recebidos da API
+  const pokemon = {
+    idPokemon: data.id,
+    nome: data.name,
+
+    tipo: data.types.map((item) => item.type.name),
+
+    imagemPokemon: data.sprites.other["official-artwork"].front_default,
+
+    altura: data.height,
+    peso: data.weight,
+
+    habilidades: data.abilities.map((item) => item.ability.name),
+
+    status: data.stats,
+  };
+
+  return pokemon;
+}
+
+// ==========================================
+// 2. CARREGAMENTO AUTOMÁTICO
+// ==========================================
+
 document.addEventListener("DOMContentLoaded", async () => {
   const quantidade = 12;
 
-  // Buscar Pokémon
   for (let i = 1; i <= quantidade; i++) {
     try {
-      const response = await fetch(`http://localhost:3000/api/pokemon/${i * 4}`); // pokemon[i * 4]
-
-      if (!response.ok) {
-        throw new Error(`Erro ao buscar Pokémon ${i}`);
-      }
-
-      const data = await response.json();
-
-      const pokemon = {
-        idPokemon: data.id,
-        nome: data.name,
-        tipo: data.types.map((item) => item.type.name),
-        imagemPokemon: data.sprites.other["official-artwork"].front_default,
-      };
+      // Mantendo sua lógica de IDs: 4, 8, 12...
+      const pokemon = await buscarPokemon(i * 4);
 
       pokemonsSelecionados.push(pokemon);
     } catch (erro) {
       console.error(erro);
     }
   }
+
   renderizarCards(pokemonsSelecionados);
 });
 
-//evento realizado ao pesquisar
+// ==========================================
+// 3. PESQUISA POR NOME OU ID
+// ==========================================
+
 buttonSearch.addEventListener("click", async (event) => {
   event.preventDefault();
-  const inputValue = document.getElementById("searchPokemon").value;
-  console.log(inputValue);
+
+  const inputValue = inputSearch.value.trim().toLowerCase();
+
+  if (!inputValue) {
+    renderizarCards(pokemonsSelecionados);
+    return;
+  }
 
   try {
-    const response = await fetch(`http://localhost:3000/api/pokemon/${inputValue}`);
+    const pokemon = await buscarPokemon(inputValue);
 
-    if (!response.ok) {
-      throw new Error(`Erro ao buscar Pokémon ${inputValue}`);
-    }
-
-    const data = await response.json();
-    console.log(data);
-    const pokemon = {
-      idPokemon: data.id,
-      nome: data.name,
-      tipo: data.types.map((item) => item.type.name),
-      imagemPokemon: data.sprites.other["official-artwork"].front_default,
-    };
-
+    // Mostra apenas o Pokémon pesquisado
     renderizarCards([pokemon]);
   } catch (erro) {
     console.error(erro);
+    alert("Pokémon não encontrado. Verifique o nome ou ID.");
   }
 });
 
-//criando os cards inseridos na tela
-function renderizarCards(pokemon) {
-  containerCard.innerHTML = "";
+// ==========================================
+// 4. FUNÇÃO PARA GERAR ETIQUETAS DOS TIPOS
+// ==========================================
 
-  // Criar cards
-  pokemon.forEach((item) => {
+function criarEtiquetasTipos(tipos) {
+  return tipos
+    .map((tipo) => {
+      return `
+        <span class="type-pill tipo-${tipo}">
+          ${nomesTipos[tipo] || tipo}
+        </span>
+      `;
+    })
+    .join("");
+}
+
+// ==========================================
+// 5. RENDERIZAR OS CARDS
+// ==========================================
+
+function renderizarCards(listaPokemons) {
+  // Limpa os cards anteriores
+  containerCard.replaceChildren();
+
+  listaPokemons.forEach((item) => {
     const cardPokemon = document.createElement("div");
 
     const tipoPrincipal = item.tipo[0];
 
     cardPokemon.classList.add("card", `tipo-${tipoPrincipal}`);
 
-    // etiquetas dos tipos
-    const etiquetasTipos = item.tipo
-      .map((tipo) => {
-        return `
-          <span class="type-pill tipo-${tipo}">
-            ${nomesTipos[tipo] || tipo}
-          </span>
-        `;
-      })
-      .join("");
+    const etiquetasTipos = criarEtiquetasTipos(item.tipo);
 
     cardPokemon.innerHTML = `
       <div class="card-decoration"></div>
@@ -112,6 +158,7 @@ function renderizarCards(pokemon) {
         type="button"
         class="card-favorite"
         aria-label="Favoritar ${item.nome}"
+        aria-pressed="false"
       >
         ♡
       </button>
@@ -150,7 +197,10 @@ function renderizarCards(pokemon) {
 
     containerCard.appendChild(cardPokemon);
 
-    // click para favoritar (visual temporário)
+    // --------------------------------------
+    // BOTÃO FAVORITOS (VISUAL TEMPORÁRIO)
+    // --------------------------------------
+
     const botaoFavorito = cardPokemon.querySelector(".card-favorite");
 
     botaoFavorito.addEventListener("click", (event) => {
@@ -161,12 +211,240 @@ function renderizarCards(pokemon) {
       const ativo = botaoFavorito.classList.contains("active");
 
       botaoFavorito.textContent = ativo ? "♥" : "♡";
+
       botaoFavorito.setAttribute("aria-pressed", String(ativo));
     });
 
-    // Clique para detalhes (futuro modal)
-    cardPokemon.querySelector(".card-details").addEventListener("click", () => {
-      console.log(item.idPokemon, item.nome, item.tipo);
+    // --------------------------------------
+    // BOTÃO PARA ABRIR O MODAL
+    // --------------------------------------
+
+    const botaoDetalhes = cardPokemon.querySelector(".card-details");
+
+    botaoDetalhes.addEventListener("click", () => {
+      ultimoBotaoDetalhes = botaoDetalhes;
+
+      abrirModal(item);
     });
   });
 }
+
+// ==========================================
+// 6. ABRIR MODAL DE DETALHES
+// ==========================================
+
+function abrirModal(item) {
+  const tipoPrincipal = item.tipo[0];
+
+  // Etiquetas dos tipos
+  const etiquetasTipos = criarEtiquetasTipos(item.tipo);
+
+  // Altura em metros
+  const altura = (item.altura / 10).toFixed(1);
+
+  // Peso em quilogramas
+  const peso = (item.peso / 10).toFixed(1);
+
+  // Habilidades do Pokémon
+  const habilidades = item.habilidades
+    .map((habilidade) => {
+      return habilidade.replace(/-/g, " ");
+    })
+    .join(", ");
+
+  // --------------------------------------
+  // GERAR AS SEIS ESTATÍSTICAS
+  // --------------------------------------
+
+  const estatisticas = item.status
+    .map((status) => {
+      const nome = nomesStatus[status.stat.name] || status.stat.name;
+
+      const valor = status.base_stat;
+
+      // Porcentagem para a barra visual
+      const porcentagem = Math.min((valor / 255) * 100, 100);
+
+      return `
+        <div class="modal-stat-row">
+          <span class="stat-name">
+            ${nome}
+          </span>
+
+          <span class="stat-value">
+            ${valor}
+          </span>
+
+          <div class="stat-track">
+            <div
+              class="stat-progress"
+              style="width: ${porcentagem}%"
+            ></div>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  // --------------------------------------
+  // APLICAR TIPO PRINCIPAL NO MODAL
+  // --------------------------------------
+
+  modalInfo.className = `modal-dialog tipo-${tipoPrincipal}`;
+
+  // --------------------------------------
+  // CONSTRUIR O HTML DO MODAL
+  // --------------------------------------
+
+  modalInfo.innerHTML = `
+    <!-- Botão fechar -->
+    <button
+      type="button"
+      class="modal-close"
+      aria-label="Fechar detalhes"
+    >
+      &times;
+    </button>
+
+    <!-- COLUNA 1: IMAGEM -->
+    <div class="modal-visual">
+      <img
+        src="${item.imagemPokemon}"
+        alt="${item.nome}"
+      />
+    </div>
+
+    <!-- COLUNA 2: LINHA 1 -->
+    <div class="modal-heading">
+
+      <span class="modal-number">
+        #${String(item.idPokemon).padStart(3, "0")}
+      </span>
+
+      <h2 id="modal-nome" class="modal-name">
+        ${item.nome}
+      </h2>
+
+      <div class="modal-types">
+        ${etiquetasTipos}
+      </div>
+
+    </div>
+
+    <!-- COLUNA 2: LINHA 2 -->
+    <div class="modal-facts">
+
+      <div class="modal-fact">
+        <span>ALTURA</span>
+        <strong>${altura} m</strong>
+      </div>
+
+      <div class="modal-fact">
+        <span>PESO</span>
+        <strong>${peso} kg</strong>
+      </div>
+
+      <div class="modal-fact">
+        <span>HABILIDADES</span>
+        <strong>${habilidades}</strong>
+      </div>
+
+    </div>
+
+    <!-- COLUNA 2: LINHA 3 -->
+    <div class="modal-stats">
+
+      <h3>ESTATÍSTICAS BASE</h3>
+
+      <div class="modal-stats-list">
+        ${estatisticas}
+      </div>
+
+    </div>
+  `;
+
+  // --------------------------------------
+  // EXIBIR MODAL
+  // --------------------------------------
+
+  containerModal.classList.add("is-open");
+
+  containerModal.setAttribute("aria-hidden", "false");
+
+  // Impedir a rolagem do fundo
+  document.body.style.overflow = "hidden";
+
+  // Evento para fechar pelo botão X
+  const botaoFechar = modalInfo.querySelector(".modal-close");
+
+  botaoFechar.addEventListener("click", fecharModal);
+  botaoFechar.focus();
+}
+
+// ==========================================
+// 7. FECHAR MODAL
+// ==========================================
+
+function fecharModal() {
+  containerModal.classList.remove("is-open");
+
+  containerModal.setAttribute("aria-hidden", "true");
+
+  // Habilitar novamente a rolagem da página
+  document.body.style.overflow = "";
+
+  // Devolver o foco ao botão de detalhes
+  ultimoBotaoDetalhes?.focus();
+}
+
+// ==========================================
+// 8. FECHAR CLICANDO FORA DO MODAL
+// ==========================================
+
+containerModal.addEventListener("click", (event) => {
+  if (event.target === containerModal) {
+    fecharModal();
+  }
+});
+
+// ==========================================
+// 9. FECHAR COM A TECLA ESC
+// ==========================================
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && containerModal.classList.contains("is-open")) {
+    fecharModal();
+  }
+});
+
+// ==========================================
+// 10. MANTER O FOCO DENTRO DO MODAL
+// ==========================================
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Tab" || !containerModal.classList.contains("is-open")) {
+    return;
+  }
+
+  const elementos = Array.from(
+    modalInfo.querySelectorAll(
+      'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    ),
+  );
+
+  if (elementos.length === 0) {
+    event.preventDefault();
+    return;
+  }
+
+  const primeiro = elementos[0];
+  const ultimo = elementos[elementos.length - 1];
+
+  if (event.shiftKey && document.activeElement === primeiro) {
+    event.preventDefault();
+    ultimo.focus();
+  } else if (!event.shiftKey && document.activeElement === ultimo) {
+    event.preventDefault();
+    primeiro.focus();
+  }
+});
