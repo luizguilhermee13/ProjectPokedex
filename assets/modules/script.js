@@ -491,19 +491,10 @@ sectionAtiva.forEach((item) => {
     console.log(item);
     if (item.innerHTML == "Explorar") {
       renderizarCards(pokemonsSelecionados);
-      tituloSection.innerHTML = `
-      <h2 class="font-spaceBlack text-4xl flex justify-between items-center" id="tituloSection">
-            Conheça os Pokémon
-            <span class="font-ManropeWhite text-sm uppercase text-[#0000008C]" id="qtdResultados">&#128190; ${listaPokemons.length} resultados</span>
-          </h2>`;
+      tituloSection.firstChild.textContent = "Conheça os Pokémon "; //first para alterar somente o h2
     } else if (item.innerHTML == "Favoritos") {
       renderizarCards(pokemonsFavoritados);
-
-      tituloSection.innerHTML = `
-      <h2 class="font-spaceBlack text-4xl flex justify-between items-center" id="tituloSection">
-            Conheça seus favoritos
-            <span class="font-ManropeWhite text-sm uppercase text-[#0000008C]" id="qtdResultados">&#128190; ${listaPokemons.length} resultados</span>
-          </h2>`;
+      tituloSection.firstChild.textContent = "Conheça seus favoritos ";
     }
   });
 });

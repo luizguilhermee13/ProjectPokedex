@@ -48,3 +48,47 @@ main {
   grid-template-columns: minmax(0, 1fr);
   grid-template-rows: auto 1fr;
 }
+
+/* ==========================================
+   RESPONSIVIDADE DO HEADER
+========================================== */
+
+header {
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 1.8vw, 1rem);
+}
+
+/* Logo */
+header .logo {
+  flex-shrink: 0;
+}
+
+header .logo h2 {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  white-space: nowrap;
+}
+
+/* Navegação */
+header .sections,
+header .sectionsAtivas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+header .sections {
+  min-width: 0;
+}
+
+/* Links Explorar e Favoritos */
+header .sectionsAtivas li {
+  font-size: clamp(0.8rem, 1.65vw, 1rem);
+  white-space: nowrap;
+}
+
+/* Contador de favoritos */
+header .filtro {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
