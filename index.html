@@ -13,12 +13,12 @@
     <header class="font-ManropeBlack">
       <div class="logo text-3xl"><h2>Pokedex</h2></div>
       <div class="sections flex gap-4">
-        <ul class="flex gap-4">
-          <li class="text-[#ef4035]">Explorar</li>
-          <li class="text-[#0000008C]">Favoritos</li>
+        <ul class="flex gap-4 sectionsAtivas">
+          <li class="text-[#ef4035] cursor-pointer" id="sectionFull">Explorar</li>
+          <li class="text-[#0000008C] cursor-pointer" id="sectionFav">Favoritos</li>
         </ul>
         <div class="filtro">
-          <p>&#10084;&#65039;&#65039; <span>0</span></p>
+          <p>&#10084;&#65039;&#65039; <span id="qtdFavoritos">0</span></p>
         </div>
       </div>
     </header>
@@ -71,6 +71,7 @@
         <div class="catalago-pokemons">
           <div id="containerCard"></div>
           <!-- dados via api (tipos de pokemon)  -->
+          <div id="containerCard2"></div>
         </div>
       </div>
     </main>

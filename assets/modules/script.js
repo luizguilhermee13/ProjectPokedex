@@ -36,6 +36,7 @@ const nomesStatus = {
 };
 
 const pokemonsSelecionados = [];
+const pokemonsFavoritados = [];
 
 let ultimoBotaoDetalhes = null;
 
@@ -202,6 +203,15 @@ function renderizarCards(listaPokemons) {
     // --------------------------------------
 
     const botaoFavorito = cardPokemon.querySelector(".card-favorite");
+    let qtdFavoritos = document.querySelector("#qtdFavoritos");
+
+    // Verifica se esse Pokémon já está nos favoritos
+    const jaFavoritado = pokemonsFavoritados.some((pokemon) => pokemon.idPokemon === item.idPokemon);
+
+    // Mantém o coração correto ao renderizar o card
+    botaoFavorito.classList.toggle("active", jaFavoritado);
+    botaoFavorito.textContent = jaFavoritado ? "♥" : "♡";
+    botaoFavorito.setAttribute("aria-pressed", String(jaFavoritado));
 
     botaoFavorito.addEventListener("click", (event) => {
       event.stopPropagation();
@@ -211,8 +221,24 @@ function renderizarCards(listaPokemons) {
       const ativo = botaoFavorito.classList.contains("active");
 
       botaoFavorito.textContent = ativo ? "♥" : "♡";
-
       botaoFavorito.setAttribute("aria-pressed", String(ativo));
+
+      if (ativo) {
+        const existe = pokemonsFavoritados.some((pokemon) => pokemon.idPokemon === item.idPokemon);
+
+        if (!existe) {
+          pokemonsFavoritados.push(item);
+        }
+      } else {
+        const index = pokemonsFavoritados.findIndex((pokemon) => pokemon.idPokemon === item.idPokemon);
+
+        // Remover somente o Pokémon selecionado
+        if (index !== -1) {
+          pokemonsFavoritados.splice(index, 1);
+        }
+      }
+      qtdFavoritos.textContent = pokemonsFavoritados.length;
+      console.log("Favoritos:", pokemonsFavoritados);
     });
 
     // --------------------------------------
@@ -447,4 +473,22 @@ document.addEventListener("keydown", (event) => {
     event.preventDefault();
     primeiro.focus();
   }
+});
+
+// ==========================================
+// 11 . SECTION FAVORITOS
+// ==========================================
+const sectionAtiva = document.querySelectorAll(".sectionsAtivas li");
+
+console.log(sectionAtiva);
+
+sectionAtiva.forEach((item) => {
+  item.addEventListener("click", () => {
+    console.log(item);
+    if (item.innerHTML == "Explorar") {
+      renderizarCards(pokemonsSelecionados);
+    } else if (item.innerHTML == "Favoritos") {
+      renderizarCards(pokemonsFavoritados);
+    }
+  });
 });
