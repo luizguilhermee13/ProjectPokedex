@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pokedex API</title>
-    <link rel="shortcut icon" href="./assets/logoPokedex.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./assets/logoPokedex.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="./assets/css/grid-layout.css" />
     <link href="./output.css" rel="stylesheet" />
@@ -14,8 +18,12 @@
       <div class="logo text-3xl"><h2>Pokedex</h2></div>
       <div class="sections flex gap-4">
         <ul class="flex gap-4 sectionsAtivas">
-          <li class="text-[#ef4035] cursor-pointer" id="sectionFull">Explorar</li>
-          <li class="text-[#0000008C] cursor-pointer" id="sectionFav">Favoritos</li>
+          <li class="text-[#ef4035] cursor-pointer" id="sectionFull">
+            Explorar
+          </li>
+          <li class="text-[#0000008C] cursor-pointer" id="sectionFav">
+            Favoritos
+          </li>
         </ul>
         <div class="filtro">
           <p>&#10084;&#65039;&#65039; <span id="qtdFavoritos">0</span></p>
@@ -31,7 +39,9 @@
         </div>
 
         <div class="search-text">
-          <span class="font-ManropeBlack text-[#ef4035]">&#128165; Explore o mundo Pokémon </span>
+          <span class="font-ManropeBlack text-[#ef4035]"
+            >&#128165; Explore o mundo Pokémon
+          </span>
 
           <h1 class="font-spaceBlack text-8xl">
             Descubra.
@@ -39,32 +49,60 @@
           </h1>
 
           <p class="font-ManropeWhite text-2xl text-[#0000008C] leading-6">
-            Encontre informações, habilidades e estatísticas de cada Pokémon em um só lugar.
+            Encontre informações, habilidades e estatísticas de cada Pokémon em
+            um só lugar.
           </p>
 
           <form class="search-inputs gap-3">
-            <label for="searchPokemon" class="search-field bg-white rounded-2xl px-5 py-4">
+            <label
+              for="searchPokemon"
+              class="search-field bg-white rounded-2xl px-5 py-4"
+            >
               🔎
-              <input class="font-ManropeWhite" type="text" id="searchPokemon" placeholder="Busque por nome ou número..." />
+              <input
+                class="font-ManropeWhite"
+                type="text"
+                id="searchPokemon"
+                placeholder="Busque por nome ou número..."
+              />
             </label>
 
-            <button type="submit" id="searchButton" class="search-button bg-black font-ManropeWhite rounded-lg px-8 py-4">
+            <button
+              type="submit"
+              id="searchButton"
+              class="search-button bg-black font-ManropeWhite rounded-lg px-8 py-4"
+            >
               Buscar <span aria-hidden="true">→</span>
             </button>
           </form>
         </div>
       </div>
 
-      <div class="containerPokedex border-2 border-amber-50" id="containerPokedex">
+      <div
+        class="containerPokedex border-2 border-amber-50"
+        id="containerPokedex"
+      >
         <!-- titulo e filtros main  -->
         <div class="catalago-header">
-          <p class="font-ManropeBlack text-sm uppercase text-[#0000008C]">Catálogo nacional</p>
-          <h2 class="font-spaceBlack text-4xl flex justify-between items-center" id="tituloSection">
+          <p class="font-ManropeBlack text-sm uppercase text-[#0000008C]">
+            Catálogo nacional
+          </p>
+          <h2
+            class="font-spaceBlack text-4xl flex justify-between items-center"
+            id="tituloSection"
+          >
             Conheça os Pokémon
-            <span class="font-ManropeWhite text-sm uppercase text-[#0000008C]" id="qtdResultados"></span>
+            <span
+              class="font-ManropeWhite text-sm uppercase text-[#0000008C]"
+              id="qtdResultados"
+            ></span>
           </h2>
           <div>
-            <p class="bg-black font-ManropeWhite rounded-2xl flex justify-center items-center w-16 h-8 text-white">todos</p>
+            <p
+              class="bg-black font-ManropeWhite rounded-2xl flex justify-center items-center w-16 h-8 text-white"
+            >
+              todos
+            </p>
           </div>
         </div>
 
@@ -84,7 +122,13 @@
 
     <!-- Modal de detalhes dos Pokémon -->
     <div id="modal-pokemon" class="modal-overlay" aria-hidden="true">
-      <section id="modal-info" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-nome"></section>
+      <section
+        id="modal-info"
+        class="modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-nome"
+      ></section>
     </div>
     <script type="module" src="./assets/modules/script.js"></script>
   </body>

@@ -15,7 +15,9 @@ app.get("/api/pokemon/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
-    const resposta = await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(id.toLowerCase())}`);
+    const resposta = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(id.toLowerCase())}`,
+    );
 
     if (!resposta.ok) {
       return res.status(resposta.status).json({

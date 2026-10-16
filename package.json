@@ -16,14 +16,23 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch backend/server.js",
-    "server": "node server.js",
+    "server": "node backend/server.js",
     "tailwind": "tailwindcss -i ./assets/css/input.css -o ./output.css --watch",
-    "build:css": "tailwindcss -i ./assets/css/input.css -o ./output.css --minify"
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./output.css --minify",
+    "lint": "eslint assets/modules backend",
+    "format": "prettier --write \"assets/**/*.{js,css}\" \"backend/**/*.js\" \"index.html\" \"package.json\" \"README.md\"",
+    "format:check": "prettier --check \"assets/**/*.{js,css}\" \"backend/**/*.js\" \"index.html\" \"package.json\" \"README.md\""
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
     "cors": "^2.8.6",
     "express": "^5.3.0",
     "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10"
   }
 }

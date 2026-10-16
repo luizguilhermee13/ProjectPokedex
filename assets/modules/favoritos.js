@@ -8,7 +8,9 @@ export function configurarFavorito(cardPokemon, item) {
   const qtdFavoritos = document.getElementById("qtdFavoritos");
 
   // Verificar se já está nos favoritos
-  const jaFavoritado = pokemonsFavoritados.some((pokemon) => pokemon.idPokemon === item.idPokemon);
+  const jaFavoritado = pokemonsFavoritados.some(
+    (pokemon) => pokemon.idPokemon === item.idPokemon,
+  );
 
   // Manter o coração correto ao renderizar o card
   botaoFavorito.classList.toggle("active", jaFavoritado);
@@ -31,14 +33,18 @@ export function configurarFavorito(cardPokemon, item) {
 
     if (ativo) {
       // Verificar se já existe no array
-      const existe = pokemonsFavoritados.some((pokemon) => pokemon.idPokemon === item.idPokemon);
+      const existe = pokemonsFavoritados.some(
+        (pokemon) => pokemon.idPokemon === item.idPokemon,
+      );
 
       if (!existe) {
         pokemonsFavoritados.push(item);
       }
     } else {
       // Encontrar a posição do Pokémon
-      const index = pokemonsFavoritados.findIndex((pokemon) => pokemon.idPokemon === item.idPokemon);
+      const index = pokemonsFavoritados.findIndex(
+        (pokemon) => pokemon.idPokemon === item.idPokemon,
+      );
 
       // Remover somente o Pokémon selecionado
       if (index !== -1) {
@@ -48,7 +54,10 @@ export function configurarFavorito(cardPokemon, item) {
 
     // SALVAR FAVORITOS NO LOCALSTORAGE
 
-    localStorage.setItem("pokemonsFavoritados", JSON.stringify(pokemonsFavoritados));
+    localStorage.setItem(
+      "pokemonsFavoritados",
+      JSON.stringify(pokemonsFavoritados),
+    );
 
     // Atualizar contador de favoritos
     qtdFavoritos.textContent = pokemonsFavoritados.length;

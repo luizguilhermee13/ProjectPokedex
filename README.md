@@ -1,195 +1,161 @@
 # 🎮 Pokédex
 
-Uma Pokédex em **HTML, CSS (Tailwind), JavaScript e Node.js**, que consome a **PokéAPI** por meio de um servidor próprio feito com **Express**. A página exibe os Pokémon em cards dinâmicos, com cores por tipo, e permite buscar qualquer Pokémon por **nome ou número**.
+Uma Pokédex desenvolvida com **HTML, CSS, JavaScript e Node.js**, utilizando a [PokéAPI](https://pokeapi.co/) para consultar informações dos Pokémon. O projeto exibe os dados em cards, permite buscar por nome ou número, visualizar detalhes e salvar favoritos.
 
-> 🚧 Projeto em evolução, desenvolvido para fins de estudo.
-
----
+> Projeto pessoal desenvolvido para praticar desenvolvimento web e organização de código.
 
 ## 📖 Sobre o projeto
 
-O projeto começou como uma página puramente front-end e passou por uma reestruturação:
+A Pokédex começou como uma página front-end e foi sendo aprimorada ao longo do desenvolvimento. Hoje, conta com um servidor em **Node.js e Express** para consultar a PokéAPI e um front-end organizado em módulos JavaScript.
 
-- **Layout novo**, com cabeçalho, seção de busca (hero) e catálogo de Pokémon;
-- **Backend em Node.js/Express**, que atua como intermediário entre o front-end e a PokéAPI;
-- **Tailwind CSS** combinado com CSS próprio para o visual.
+O layout utiliza **Tailwind CSS v4** e CSS próprio, com cores diferentes para os tipos de Pokémon e adaptação para telas menores.
 
-O fluxo funciona assim:
+O fluxo de consulta é simples:
 
 ```text
-Navegador (index.html + script.js)
-        │  fetch → http://localhost:3000/api/pokemon/:id
-        ▼
-Servidor Express (backend/server.js)
-        │  fetch → https://pokeapi.co/api/v2/pokemon/:id
-        ▼
+Navegador (front-end)
+        ↓
+Servidor Express (localhost:3000)
+        ↓
 PokéAPI
 ```
 
----
-
 ## ✨ Funcionalidades
 
-- 🃏 Catálogo inicial com **12 Pokémon** carregados automaticamente ao abrir a página;
-- 🔍 **Busca por nome ou número**, exibindo o card do Pokémon encontrado;
-- 🎨 Cards criados dinamicamente com **ID**, **nome**, **arte oficial** e **tipos**;
-- 🌈 Cor personalizada para cada um dos **18 tipos**, com nomes traduzidos para português;
-- 🏷️ Suporte a Pokémon com um ou dois tipos;
-- ♡ Botão de favoritar nos cards (apenas visual, por enquanto);
-- 🛡️ Tratamento de erro no servidor: retorna "Pokémon não encontrado" para buscas inválidas.
+- Catálogo inicial com 12 Pokémon carregados automaticamente;
+- Busca de Pokémon por nome ou número;
+- Cards com número, nome, imagem oficial e tipos;
+- Cores e etiquetas para os 18 tipos, com nomes em português;
+- Modal com altura, peso, habilidades e estatísticas;
+- Adição e remoção de favoritos, com contador no cabeçalho;
+- Favoritos salvos no `localStorage`, mantidos ao recarregar a página;
+- Navegação entre as seções **Explorar** e **Favoritos**;
+- Contador de resultados e tratamento de erros nas buscas;
+- Layout responsivo.
 
----
+## 🛠 Tecnologias utilizadas
 
-## 🛠️ Tecnologias utilizadas
+**Front-end:** HTML5, CSS3, Tailwind CSS v4, JavaScript (ES6+) e Google Fonts.
 
-**Front-end**
+**Back-end:** Node.js, Express e CORS.
 
-- HTML5
-- CSS3
-- [Tailwind CSS](https://tailwindcss.com/) v4 (via CLI)
-- JavaScript (ES6+)
-- Fontes: Manrope e Space Grotesk (Google Fonts)
+**API:** [PokéAPI](https://pokeapi.co/).
 
-**Back-end**
+**Ferramentas de desenvolvimento:** Git, GitHub, Prettier e ESLint.
 
-- [Node.js](https://nodejs.org/)
-- [Express](https://expressjs.com/) 5
-- [CORS](https://www.npmjs.com/package/cors)
-
-**API**
-
-- [PokéAPI](https://pokeapi.co/)
-
----
-
-## 📂 Estrutura do projeto
+## 📁 Estrutura do projeto
 
 ```text
-📁 ProjectPokedex
-│
-├── 📁 assets
-│   ├── 📁 css
-│   │   ├── input.css            # Entrada do Tailwind + classes de tipos e fontes
+ProjectPokedex/
+├── assets/
+│   ├── css/
+│   │   ├── grid-layout.css
+│   │   ├── input.css
 │   │   ├── main.css
-│   │   ├── style.css            # Estilos gerais e dos cards
-│   │   ├── search-section.css   # Estilos da seção de busca
-│   │   └── grid-layout.css      # Layout em grid
-│   ├── 📁 modules
-│   │   └── script.js            # Lógica do front-end (fetch, cards, busca)
+│   │   ├── modal.css
+│   │   ├── search-section.css
+│   │   └── style.css
+│   ├── modules/
+│   │   ├── api.js          # Consulta ao servidor
+│   │   ├── busca.js        # Pesquisa de Pokémon
+│   │   ├── cards.js        # Criação dos cards
+│   │   ├── dados.js        # Traduções e listas
+│   │   ├── favoritos.js    # Gerenciamento de favoritos
+│   │   ├── modal.js        # Detalhes dos Pokémon
+│   │   ├── navegacao.js    # Abas Explorar e Favoritos
+│   │   ├── pokemon.js      # Classe Pokemon
+│   │   ├── script.js       # Inicialização da aplicação
+│   │   └── tipos.js        # Etiquetas dos tipos
 │   └── logoPokedex.png
-│
-├── 📁 backend
-│   └── server.js                # Servidor Express (rota da PokéAPI)
-│
+├── backend/
+│   └── server.js           # Servidor Express
 ├── index.html
-├── output.css                   # CSS gerado pelo Tailwind
+├── output.css             # CSS gerado pelo Tailwind
 ├── package.json
+├── package-lock.json
 └── README.md
 ```
 
----
-
 ## 🚀 Como executar
 
-### Pré-requisitos
+**Pré-requisitos:** Node.js 18 ou superior (para usar `fetch` nativo no servidor) e npm.
 
-- [Node.js](https://nodejs.org/) instalado (recomendado: versão 18 ou superior, por causa do `fetch` nativo);
-- Git.
+1. Clone o repositório e entre na pasta:
 
-### Passo a passo
+   ```bash
+   git clone https://github.com/luizguilhermee13/ProjectPokedex.git
+   cd ProjectPokedex
+   ```
 
-1. Clone o repositório:
+2. Instale as dependências:
 
-```bash
-git clone https://github.com/luizguilhermee13/ProjectPokedex.git
-```
-
-2. Entre na pasta do projeto e instale as dependências:
-
-```bash
-cd ProjectPokedex
-npm install
-```
+   ```bash
+   npm install
+   ```
 
 3. Inicie o servidor:
 
-```bash
-npm run dev
-```
+   ```bash
+   npm run dev
+   ```
 
-O servidor ficará disponível em `http://localhost:3000`.
+4. Abra o `index.html` no navegador, preferencialmente utilizando a extensão **Live Server** do VS Code.
 
-4. Abra o arquivo `index.html` no navegador (ou use a extensão **Live Server** do VS Code).
+O servidor ficará disponível em `http://localhost:3000` e precisa estar em execução para que os Pokémon sejam carregados.
 
-> ⚠️ O servidor precisa estar rodando para os Pokémon aparecerem, pois o front-end busca os dados em `localhost:3000`.
-
-### 🎨 Editando os estilos (opcional)
-
-Se você alterar classes do Tailwind, regenere o `output.css`:
+### Comandos úteis
 
 ```bash
-# modo observação (recompila ao salvar)
-npm run tailwind
-
-# build final minificado
-npm run build:css
+npm run tailwind      # Recompila o CSS ao salvar alterações
+npm run build:css     # Gera o CSS minificado
+npm run lint          # Analisa o JavaScript com ESLint
+npm run format        # Formata os arquivos com Prettier
+npm run format:check  # Verifica a formatação sem alterar arquivos
 ```
 
----
+## 🔌 Rotas do servidor
 
-## 🔌 Rotas da API (backend)
+| Método | Rota               | Descrição                                |
+| ------ | ------------------ | ---------------------------------------- |
+| GET    | `/`                | Confirma que o servidor está funcionando |
+| GET    | `/api/pokemon/:id` | Consulta um Pokémon por nome ou número   |
 
-| Método | Rota               | Descrição                                                           |
-| ------ | ------------------ | ------------------------------------------------------------------- |
-| GET    | `/`                | Verifica se o servidor está funcionando                             |
-| GET    | `/api/pokemon/:id` | Retorna os dados de um Pokémon, buscando por **nome** ou **número** |
-
-**Exemplos:**
+Exemplos:
 
 ```text
-GET http://localhost:3000/api/pokemon/25
-GET http://localhost:3000/api/pokemon/pikachu
+http://localhost:3000/api/pokemon/25
+http://localhost:3000/api/pokemon/pikachu
 ```
 
-Se o Pokémon não existir, a resposta é `{ "erro": "Pokémon não encontrado" }`. Em caso de falha ao consultar a PokéAPI, retorna status `500`.
+Para Pokémon não encontrados, o servidor retorna uma mensagem de erro. Em falhas na consulta à PokéAPI, retorna o status `500`.
 
----
-
-## 💻 O que foi praticado
+## 💻 O que pratiquei
 
 - Consumo de APIs com `fetch` e `async/await`;
-- Criação de um servidor com **Express** e rotas com parâmetros;
-- Uso de **CORS** e comunicação entre front-end e back-end;
-- Tratamento de erros com `try/catch` e códigos de status HTTP;
-- Manipulação do DOM e criação dinâmica de elementos;
-- Arrays, `map()` e objetos de tradução;
-- Estilização com **Tailwind CSS** e variáveis CSS (`--type-color`, `--type-bg`);
-- Organização do projeto em pastas e fluxo de trabalho com **branches** no Git.
+- Criação de rotas e tratamento de erros com Express;
+- Manipulação do DOM e eventos em JavaScript;
+- Arrays e métodos como `map()`, `some()` e `findIndex()`;
+- Armazenamento local com `localStorage`;
+- Organização do JavaScript em módulos (`import` e `export`);
+- Classes, construtores e métodos com a classe `Pokemon`;
+- Estilização responsiva com Tailwind CSS e CSS próprio;
+- Formatação e análise do código com Prettier e ESLint;
+- Uso de Git e branches durante o desenvolvimento.
 
----
+## 📌 Melhorias futuras
 
-## 📈 Melhorias futuras
-
-- [ ] Filtro por tipo (o botão "todos" já está no layout);
-- [ ] Sistema de favoritos funcional (com contador no cabeçalho e persistência);
-- [ ] Modal com detalhes, habilidades e estatísticas do Pokémon;
-- [ ] Contador de resultados dinâmico;
-- [ ] Mensagens de erro e estado de carregamento (loading) para o usuário;
+- [ ] Filtro de Pokémon por tipo;
+- [ ] Mensagens de carregamento e erros diretamente na interface;
 - [ ] Paginação ou carregamento de mais Pokémon;
-- [ ] Refatorar a criação dos cards em uma função reutilizável;
-- [ ] Responsividade aprimorada;
-- [ ] Deploy do front-end e do back-end.
-
----
+- [ ] Atualização imediata da lista ao remover um Pokémon na aba Favoritos;
+- [ ] Publicação do front-end e do back-end.
 
 ## 🔗 Créditos
 
-Todos os dados dos Pokémon são fornecidos pela [PokéAPI](https://pokeapi.co/). Pokémon e seus personagens pertencem à Nintendo, Game Freak e The Pokémon Company; este projeto não tem fins comerciais.
-
----
+Os dados e as imagens dos Pokémon são fornecidos pela [PokéAPI](https://pokeapi.co/). Pokémon pertence à Nintendo, Game Freak e The Pokémon Company. Este é um projeto de estudos, sem fins comerciais.
 
 ## 👨‍💻 Autor
 
 Desenvolvido por **Luiz Guilherme**.
 
-Fique à vontade para visitar meu [GitHub](https://github.com/luizguilhermee13) e acompanhar meus outros projetos.
+[Meu GitHub](https://github.com/luizguilhermee13)

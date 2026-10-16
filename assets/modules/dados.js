@@ -30,4 +30,5 @@ export const nomesStatus = {
 
 export const pokemonsSelecionados = [];
 
-export const pokemonsFavoritados = JSON.parse(localStorage.getItem("pokemonsFavoritados")) || [];
+export const pokemonsFavoritados =
+  JSON.parse(localStorage.getItem("pokemonsFavoritados")) || [];
