@@ -2,9 +2,7 @@ import { buscarPokemon } from "./api.js";
 import { renderizarCards } from "./cards.js";
 import { pokemonsSelecionados } from "./dados.js";
 
-// ==========================================
 // INICIALIZAR EVENTO DE PESQUISA
-// ==========================================
 
 export function inicializarBusca() {
   const buttonSearch = document.getElementById("searchButton");

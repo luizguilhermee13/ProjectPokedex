@@ -6,9 +6,7 @@ const containerCard = document.getElementById("containerCard");
 
 const qtdResultados = document.getElementById("qtdResultados");
 
-// ==========================================
 // RENDERIZAR OS CARDS
-// ==========================================
 
 export function renderizarCards(listaPokemons) {
   // Atualizar contador dos resultados
@@ -27,9 +25,7 @@ export function renderizarCards(listaPokemons) {
     // Etiquetas dos tipos
     const etiquetasTipos = criarEtiquetasTipos(item.tipo);
 
-    // ==========================================
     // CRIAR HTML DO CARD
-    // ==========================================
 
     cardPokemon.innerHTML = `
       <div class="card-decoration"></div>
@@ -77,15 +73,11 @@ export function renderizarCards(listaPokemons) {
 
     containerCard.appendChild(cardPokemon);
 
-    // ==========================================
     // CONFIGURAR FAVORITOS
-    // ==========================================
 
     configurarFavorito(cardPokemon, item);
 
-    // ==========================================
     // CONFIGURAR BOTÃO DE DETALHES
-    // ==========================================
 
     const botaoDetalhes = cardPokemon.querySelector(".card-details");
 

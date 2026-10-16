@@ -1,8 +1,6 @@
 import { pokemonsFavoritados } from "./dados.js";
 
-// ==========================================
 // CONFIGURAR BOTÃO DE FAVORITOS
-// ==========================================
 
 export function configurarFavorito(cardPokemon, item) {
   const botaoFavorito = cardPokemon.querySelector(".card-favorite");
@@ -48,9 +46,7 @@ export function configurarFavorito(cardPokemon, item) {
       }
     }
 
-    // ==========================================
     // SALVAR FAVORITOS NO LOCALSTORAGE
-    // ==========================================
 
     localStorage.setItem("pokemonsFavoritados", JSON.stringify(pokemonsFavoritados));
 

@@ -7,9 +7,7 @@ const modalInfo = document.getElementById("modal-info");
 
 let ultimoBotaoDetalhes = null;
 
-// ==========================================
 // ABRIR MODAL
-// ==========================================
 
 export function abrirModal(item, botaoDetalhes) {
   ultimoBotaoDetalhes = botaoDetalhes;
@@ -30,9 +28,7 @@ export function abrirModal(item, botaoDetalhes) {
     })
     .join(", ");
 
-  // ==========================================
   // GERAR AS SEIS ESTATÍSTICAS
-  // ==========================================
 
   const estatisticas = item.status
     .map((status) => {
@@ -66,9 +62,7 @@ export function abrirModal(item, botaoDetalhes) {
   // Aplicar a cor do tipo principal
   modalInfo.className = `modal-dialog tipo-${tipoPrincipal}`;
 
-  // ==========================================
   // CONSTRUIR O HTML DO MODAL
-  // ==========================================
 
   modalInfo.innerHTML = `
     <!-- Botão fechar -->
@@ -147,9 +141,7 @@ export function abrirModal(item, botaoDetalhes) {
   botaoFechar.focus();
 }
 
-// ==========================================
 // FECHAR MODAL
-// ==========================================
 
 export function fecharModal() {
   containerModal.classList.remove("is-open");
@@ -162,9 +154,7 @@ export function fecharModal() {
   ultimoBotaoDetalhes?.focus();
 }
 
-// ==========================================
 // EVENTOS DE FECHAMENTO E FOCO
-// ==========================================
 
 export function inicializarModal() {
   // Clicar fora do conteúdo

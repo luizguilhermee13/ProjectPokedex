@@ -2,9 +2,7 @@ import { pokemonsSelecionados, pokemonsFavoritados } from "./dados.js";
 
 import { renderizarCards } from "./cards.js";
 
-// ==========================================
 // NAVEGAÇÃO EXPLORAR / FAVORITOS
-// ==========================================
 
 export function inicializarNavegacao() {
   const sectionAtiva = document.querySelectorAll(".sectionsAtivas li");

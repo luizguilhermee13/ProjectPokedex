@@ -1,18 +1,11 @@
 import { buscarPokemon } from "./api.js";
-
 import { pokemonsSelecionados, pokemonsFavoritados } from "./dados.js";
-
 import { renderizarCards } from "./cards.js";
-
 import { inicializarBusca } from "./busca.js";
-
 import { inicializarNavegacao } from "./navegacao.js";
-
 import { inicializarModal } from "./modal.js";
 
-// ==========================================
 // INICIALIZAÇÃO DA POKÉDEX
-// ==========================================
 
 document.addEventListener("DOMContentLoaded", async () => {
   // Inicializar os eventos da aplicação
@@ -28,9 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   qtdFavoritos.textContent = pokemonsFavoritados.length;
 
-  // ==========================================
   // CARREGAMENTO AUTOMÁTICO
-  // ==========================================
 
   for (let i = 1; i <= quantidade; i++) {
     try {
