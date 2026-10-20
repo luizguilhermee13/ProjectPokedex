@@ -14,7 +14,7 @@ export function renderizarCards(listaPokemons) {
 
   // Limpar os cards anteriores
   containerCard.replaceChildren();
-
+  console.log(listaPokemons);
   listaPokemons.forEach((item) => {
     const cardPokemon = document.createElement("div");
 

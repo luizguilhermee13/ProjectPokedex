@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /*grid-layout.css*/
 body {
   display: grid;
@@ -50,9 +52,9 @@ main {
   grid-template-rows: auto 1fr;
 }
 
-/* ==========================================
-   RESPONSIVIDADE DO HEADER
-========================================== */
+/* 
+   RESPONSIVIDADE DO header
+ */
 
 header {
   flex-wrap: wrap;
@@ -302,9 +304,9 @@ header .filtro {
 }
 
 /* search-section.css */
-/* ==========================================
+/* 
    LAYOUT DA SECTION DE BUSCA
-========================================== */
+ */
 
 .hero-grid {
   padding: 6rem 2.5rem;
@@ -318,9 +320,9 @@ header .filtro {
   position: relative;
 }
 
-/* ==========================================
+/* 
    TÍTULO, SUBTÍTULO, INPUT E BUTTON
-========================================== */
+ */
 
 .search-text {
   display: flex;
@@ -352,9 +354,9 @@ header .filtro {
   line-height: 1.5;
 }
 
-/* ==========================================
+/* 
    FORMULÁRIO DE BUSCA
-========================================== */
+ */
 
 form {
   display: grid;
@@ -418,9 +420,9 @@ form {
   cursor: pointer;
 }
 
-/* ==========================================
+/* 
    POKÉBOLA DECORATIVA
-========================================== */
+ */
 
 /* Container da Pokébola */
 .pokeball-decoration {
@@ -500,9 +502,9 @@ form {
   transform: translate(-50%, -50%);
 }
 
-/* ==========================================
+/* 
    RESPONSIVIDADE
-========================================== */
+ */
 
 /* Ajuste gradual do espaçamento */
 @media (max-width: 960px) {
