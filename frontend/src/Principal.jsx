@@ -2,36 +2,33 @@ import Cards from "./cards";
 import { buscarPokemon } from "./modules/api";
 import React from "react";
 
-const Principal = () => {
+const Principal = ({ favoritos, alternarFavorito }) => {
   const [pokemonsS, setPokemonsS] = React.useState([]);
   const [carregando, setCarregando] = React.useState(true);
 
   React.useEffect(() => {
     async function carregar() {
-      const buscas = [];
+      // Dispara todas as buscas em paralelo (mais rápido)
+      const ids = Array.from({ length: 12 }, (_, i) => (i + 1) * 80);
+      const buscas = ids.map((id) => buscarPokemon(id));
 
-      for (let i = 1; i <= 12; i++) {
-        const pokemon = await buscarPokemon(i * 80);
-        buscas.push(pokemon);
-      }
-
-      //Espera todas terminarem. Se uma falhar, as outras continuam valendo
       const resultados = await Promise.allSettled(buscas);
 
-      //Fica só com as que deram certo e registra as que falharam
       const lista = resultados.filter((r) => r.status === "fulfilled").map((r) => r.value);
+
       resultados.filter((r) => r.status === "rejected").forEach((r) => console.error(r.reason));
 
       setPokemonsS(lista);
       setCarregando(false);
     }
+
     carregar();
   }, []);
 
   return (
     <main>
       <SectionSearch />
-      <SectionPokedex pokemons={pokemonsS} carregando={carregando} />
+      <SectionPokedex pokemons={pokemonsS} carregando={carregando} favoritos={favoritos} alternarFavorito={alternarFavorito} />
     </main>
   );
 };
@@ -71,7 +68,7 @@ const SectionSearch = () => {
   );
 };
 
-const SectionPokedex = ({ pokemons, carregando }) => {
+const SectionPokedex = ({ pokemons, carregando, favoritos, alternarFavorito }) => {
   return (
     <section>
       <div className="containerPokedex border-2 border-amber-50" id="containerPokedex">
@@ -92,7 +89,7 @@ const SectionPokedex = ({ pokemons, carregando }) => {
           {carregando && <p className="font-ManropeWhite text-[#0000008C]">Buscando Pokémon...</p>}
 
           <div id="containerCard">
-            <Cards pokemons={pokemons} />
+            <Cards pokemons={pokemons} favoritos={favoritos} alternarFavorito={alternarFavorito} />
           </div>
         </div>
       </div>
