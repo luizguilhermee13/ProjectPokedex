@@ -1,32 +1,37 @@
 import Cards from "./cards";
-
-// Dados fixos por enquanto. Depois vão vir da API (useState + useEffect).
-const pokemons = [
-  {
-    idPokemon: 1,
-    nome: "bulbasaur",
-    tipo: ["grass", "poison"],
-    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-  },
-  {
-    idPokemon: 4,
-    nome: "charmander",
-    tipo: ["fire"],
-    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
-  },
-  {
-    idPokemon: 7,
-    nome: "squirtle",
-    tipo: ["water"],
-    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
-  },
-];
+import { buscarPokemon } from "./modules/api";
+import React from "react";
 
 const Principal = () => {
+  const [pokemonsS, setPokemonsS] = React.useState([]);
+  const [carregando, setCarregando] = React.useState(true);
+
+  React.useEffect(() => {
+    async function carregar() {
+      const buscas = [];
+
+      for (let i = 1; i <= 12; i++) {
+        const pokemon = await buscarPokemon(i * 80);
+        buscas.push(pokemon);
+      }
+
+      //Espera todas terminarem. Se uma falhar, as outras continuam valendo
+      const resultados = await Promise.allSettled(buscas);
+
+      //Fica só com as que deram certo e registra as que falharam
+      const lista = resultados.filter((r) => r.status === "fulfilled").map((r) => r.value);
+      resultados.filter((r) => r.status === "rejected").forEach((r) => console.error(r.reason));
+
+      setPokemonsS(lista);
+      setCarregando(false);
+    }
+    carregar();
+  }, []);
+
   return (
     <main>
       <SectionSearch />
-      <SectionPokedex />
+      <SectionPokedex pokemons={pokemonsS} carregando={carregando} />
     </main>
   );
 };
@@ -66,7 +71,7 @@ const SectionSearch = () => {
   );
 };
 
-const SectionPokedex = () => {
+const SectionPokedex = ({ pokemons, carregando }) => {
   return (
     <section>
       <div className="containerPokedex border-2 border-amber-50" id="containerPokedex">
@@ -84,6 +89,8 @@ const SectionPokedex = () => {
         </div>
 
         <div className="catalago-pokemons">
+          {carregando && <p className="font-ManropeWhite text-[#0000008C]">Buscando Pokémon...</p>}
+
           <div id="containerCard">
             <Cards pokemons={pokemons} />
           </div>
