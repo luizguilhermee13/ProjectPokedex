@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Space+Grotesk:wght@400;700&display=swap");
 @import "tailwindcss";
 
 /*grid-layout.css*/
@@ -37,7 +38,7 @@ footer {
 .logo h2::before {
   content: "";
   display: block;
-  background-image: url("../logoPokedex.png");
+  background-image: url("./assets/logoPokedex.png");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -846,9 +847,6 @@ form {
   }
 }
 
-/* input.css
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&family=Space+Grotesk:wght@400;700&display=swap");
-
 @layer components {
   .font-spaceBlack {
     font-family: "Space Grotesk", sans-serif;
@@ -864,7 +862,7 @@ form {
     font-weight: 800;
   }
 
-  /* Estilização dos tipos de Pokémon 
+  /* Estilização dos tipos de Pokémon */
 
   .tipo-normal {
     --type-color: #797964;
@@ -956,4 +954,3 @@ form {
     --type-bg: #e8eff3;
   }
 }
-*/
