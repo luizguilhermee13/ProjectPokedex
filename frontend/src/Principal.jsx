@@ -1,4 +1,5 @@
 import React from "react";
+import Cards from "./cards";
 
 const Principal = () => {
   return (
@@ -45,6 +46,27 @@ const SectionSearch = () => {
   );
 };
 
+const pokemons = [
+  {
+    idPokemon: 1,
+    nome: "bulbasaur",
+    tipo: ["grass", "poison"],
+    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+  },
+  {
+    idPokemon: 4,
+    nome: "charmander",
+    tipo: ["fire"],
+    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+  },
+  {
+    idPokemon: 7,
+    nome: "squirtle",
+    tipo: ["water"],
+    imagemPokemon: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+  },
+];
+
 const SectionPokedex = () => {
   return (
     <section>
@@ -53,7 +75,7 @@ const SectionPokedex = () => {
           <p className="font-ManropeBlack text-sm uppercase text-[#0000008C]">Catálogo nacional</p>
           <h2 className="font-spaceBlack text-4xl flex justify-between items-center" id="tituloSection">
             Conheça os Pokémon
-            <span className="font-ManropeWhite text-sm uppercase text-[#0000008C]" id="qtdResultados"></span>
+            <span className="font-ManropeWhite text-sm uppercase text-[#0000008C]" id={`${pokemons.length}`}></span>
           </h2>
           <div>
             <p className="bg-black font-ManropeWhite rounded-2xl flex justify-center items-center w-16 h-8 text-white">todos</p>
@@ -61,7 +83,9 @@ const SectionPokedex = () => {
         </div>
 
         <div className="catalago-pokemons">
-          <div id="containerCard"></div>
+          <div id="containerCard">
+            <Cards pokemons={pokemons} />
+          </div>
 
           <div id="containerCard2"></div>
         </div>
