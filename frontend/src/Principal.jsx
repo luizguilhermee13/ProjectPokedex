@@ -1,8 +1,33 @@
 import Cards from "./cards";
 import { buscarPokemon } from "./modules/api";
-import React from "react";
+import Modal from "./Modal";
+import React, { useState, useEffect } from "react";
 
-const Principal = ({ favoritos, alternarFavorito }) => {
+const Principal = ({ favoritos, alternarFavorito, aba, mudarAba }) => {
+  const [pokemonSelecionado, setPokemonSelecionado] = useState(null);
+
+  function abrirModal(item) {
+    setPokemonSelecionado(item);
+  }
+  const [resultado, setResultado] = React.useState([]);
+
+  async function buscar(termo) {
+    const valor = termo.trim().toLowerCase();
+
+    if (!valor) {
+      setResultado([]);
+      return;
+    }
+
+    try {
+      const pokemon = await buscarPokemon(valor);
+      setResultado([pokemon]);
+    } catch (erro) {
+      console.error(erro);
+      alert("Pokémon não encontrado. Verifique o nome ou ID.");
+    }
+  }
+
   const [pokemonsS, setPokemonsS] = React.useState([]);
   const [carregando, setCarregando] = React.useState(true);
 
@@ -25,15 +50,33 @@ const Principal = ({ favoritos, alternarFavorito }) => {
     carregar();
   }, []);
 
+  const listaExibida = aba === "favoritos" ? favoritos : resultado.length > 0 ? resultado : pokemonsS;
+
+  const titulo = aba === "favoritos" ? "Conheça seus favoritos" : "Conheça os Pokémon";
+
   return (
     <main>
-      <SectionSearch />
-      <SectionPokedex pokemons={pokemonsS} carregando={carregando} favoritos={favoritos} alternarFavorito={alternarFavorito} />
+      <SectionSearch aoBuscar={buscar} />
+      <SectionPokedex
+        pokemons={listaExibida}
+        carregando={aba === "explorar" && carregando}
+        favoritos={favoritos}
+        alternarFavorito={alternarFavorito}
+        titulo={titulo}
+        abrirModal={abrirModal}
+      />
+      <Modal pokemon={pokemonSelecionado} fechar={() => setPokemonSelecionado(null)} />
     </main>
   );
 };
 
-const SectionSearch = () => {
+const SectionSearch = ({ aoBuscar }) => {
+  const [termo, setTermo] = React.useState("");
+  function aoEnviar(event) {
+    event.preventDefault();
+    aoBuscar(termo);
+  }
+
   return (
     <section>
       <div className="search hero-grid">
@@ -52,10 +95,17 @@ const SectionSearch = () => {
             Encontre informações, habilidades e estatísticas de cada Pokémon em um só lugar.
           </p>
 
-          <form className="search-inputs gap-3">
+          <form className="search-inputs gap-3" onSubmit={aoEnviar}>
             <label htmlFor="searchPokemon" className="search-field bg-white rounded-2xl px-5 py-4">
               🔎
-              <input className="font-ManropeWhite" type="text" id="searchPokemon" placeholder="Busque por nome ou número..." />
+              <input
+                className="font-ManropeWhite"
+                type="text"
+                id="searchPokemon"
+                placeholder="Busque por nome ou número..."
+                value={termo}
+                onChange={(e) => setTermo(e.target.value)}
+              />
             </label>
 
             <button type="submit" id="searchButton" className="search-button bg-black font-ManropeWhite rounded-lg px-8 py-4">
@@ -68,14 +118,14 @@ const SectionSearch = () => {
   );
 };
 
-const SectionPokedex = ({ pokemons, carregando, favoritos, alternarFavorito }) => {
+const SectionPokedex = ({ pokemons, carregando, favoritos, alternarFavorito, titulo, abrirModal }) => {
   return (
     <section>
       <div className="containerPokedex border-2 border-amber-50" id="containerPokedex">
         <div className="catalago-header">
           <p className="font-ManropeBlack text-sm uppercase text-[#0000008C]">Catálogo nacional</p>
           <h2 className="font-spaceBlack text-4xl flex justify-between items-center" id="tituloSection">
-            Conheça os Pokémon
+            {titulo}
             <span className="font-ManropeWhite text-sm uppercase text-[#0000008C]" id="qtdResultados">
               &#128190; {pokemons.length} resultados
             </span>
@@ -89,7 +139,7 @@ const SectionPokedex = ({ pokemons, carregando, favoritos, alternarFavorito }) =
           {carregando && <p className="font-ManropeWhite text-[#0000008C]">Buscando Pokémon...</p>}
 
           <div id="containerCard">
-            <Cards pokemons={pokemons} favoritos={favoritos} alternarFavorito={alternarFavorito} />
+            <Cards pokemons={pokemons} favoritos={favoritos} alternarFavorito={alternarFavorito} abrirModal={abrirModal} />
           </div>
         </div>
       </div>

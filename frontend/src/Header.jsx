@@ -1,4 +1,4 @@
-const Header = () => {
+const Header = ({ quantidade, aba, mudarAba }) => {
   return (
     <header className="font-ManropeBlack">
       <div className="logo text-3xl">
@@ -7,17 +7,24 @@ const Header = () => {
 
       <div className="sections flex gap-4">
         <ul className="flex gap-4 sectionsAtivas">
-          <li className="text-[#ef4035] cursor-pointer" id="sectionFull">
+          <li
+            className={`${aba === "explorar" ? "text-[#ef4035]" : "text-[#0000008C]"} cursor-pointer`}
+            onClick={() => mudarAba("explorar")}
+          >
             Explorar
           </li>
-          <li className="text-[#0000008C] cursor-pointer" id="sectionFav">
+
+          <li
+            className={`${aba === "favoritos" ? "text-[#ef4035]" : "text-[#0000008C]"} cursor-pointer`}
+            onClick={() => mudarAba("favoritos")}
+          >
             Favoritos
           </li>
         </ul>
 
         <div className="filtro">
           <p>
-            &#10084;&#65039; <span id="qtdFavoritos">0</span>
+            ❤️ <span>{quantidade}</span>
           </p>
         </div>
       </div>

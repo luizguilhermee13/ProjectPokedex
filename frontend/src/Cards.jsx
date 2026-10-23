@@ -1,6 +1,6 @@
 import Etiquetas from "./Tipos";
 
-function Cards({ pokemons, favoritos = [], alternarFavorito }) {
+function Cards({ pokemons, favoritos = [], alternarFavorito, abrirModal }) {
   return (
     <>
       {pokemons.map((item) => {
@@ -34,7 +34,7 @@ function Cards({ pokemons, favoritos = [], alternarFavorito }) {
                 <h3 className="card-name">{item.nome}</h3>
               </div>
 
-              <button type="button" className="card-details" aria-label={`Ver detalhes de ${item.nome}`}>
+              <button type="button" className="card-details" aria-label={`Ver detalhes de ${item.nome}`} onClick={() => abrirModal(item)}>
                 →
               </button>
             </div>

@@ -9,6 +9,8 @@ function App() {
     return salvos ? JSON.parse(salvos) : [];
   });
 
+  const [aba, mudarAba] = React.useState("explorar");
+
   function alternarFavorito(item) {
     const jaExiste = favoritos.some((p) => p.idPokemon === item.idPokemon);
 
@@ -25,8 +27,10 @@ function App() {
 
   return (
     <div>
-      <Header quantidade={favoritos.length} />
-      <Principal favoritos={favoritos} alternarFavorito={alternarFavorito} />
+      <Header quantidade={favoritos.length} aba={aba} mudarAba={mudarAba} />
+
+      <Principal favoritos={favoritos} alternarFavorito={alternarFavorito} aba={aba} mudarAba={mudarAba} />
+
       <Footer />
     </div>
   );
