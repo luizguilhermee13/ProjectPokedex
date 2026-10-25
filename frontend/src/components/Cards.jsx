@@ -1,4 +1,4 @@
-import Etiquetas from "./Tipos";
+import Etiquetas from "./Etiquetas";
 
 function Cards({ pokemons, favoritos = [], alternarFavorito, abrirModal }) {
   return (

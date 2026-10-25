@@ -1,5 +1,5 @@
-import Etiquetas from "./Tipos";
-import { nomesStatus } from "./modules/dados.js";
+import Etiquetas from "./Etiquetas";
+import { nomesStatus } from "../data/dados.js";
 
 function Modal({ pokemon, fechar }) {
   if (!pokemon) return null;

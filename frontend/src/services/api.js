@@ -1,4 +1,4 @@
-import { Pokemon } from "./pokemon.js";
+import { Pokemon } from "../models/pokemon.js";
 
 export async function buscarPokemon(identificador) {
   const response = await fetch(`http://localhost:3000/api/pokemon/${encodeURIComponent(identificador)}`);

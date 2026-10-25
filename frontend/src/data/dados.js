@@ -27,8 +27,3 @@ export const nomesStatus = {
   "special-defense": "Def. Esp.",
   speed: "Velocidade",
 };
-
-export const pokemonsSelecionados = [];
-
-export const pokemonsFavoritados =
-  JSON.parse(localStorage.getItem("pokemonsFavoritados")) || [];
