@@ -1,0 +1,95 @@
+/* Cores de cada tipo (variáveis --type-color e --type-bg) */
+
+@layer components {
+  /* Estilização dos tipos de Pokémon */
+
+  .tipo-normal {
+    --type-color: #797964;
+    --type-bg: #f0f0e8;
+  }
+
+  .tipo-fire {
+    --type-color: #e77928;
+    --type-bg: #fff0e3;
+  }
+
+  .tipo-water {
+    --type-color: #3c78ca;
+    --type-bg: #e6f0ff;
+  }
+
+  .tipo-grass {
+    --type-color: #369753;
+    --type-bg: #e7f4eb;
+  }
+
+  .tipo-electric {
+    --type-color: #a88400;
+    --type-bg: #fff6cb;
+  }
+
+  .tipo-psychic {
+    --type-color: #d14d85;
+    --type-bg: #fde9f1;
+  }
+
+  .tipo-ice {
+    --type-color: #368f9d;
+    --type-bg: #e4f7fa;
+  }
+
+  .tipo-dragon {
+    --type-color: #6950bd;
+    --type-bg: #eee8ff;
+  }
+
+  .tipo-dark {
+    --type-color: #61564e;
+    --type-bg: #eae6e3;
+  }
+
+  .tipo-fairy {
+    --type-color: #c55d99;
+    --type-bg: #fbe8f3;
+  }
+
+  .tipo-fighting {
+    --type-color: #b44a39;
+    --type-bg: #fae9e5;
+  }
+
+  .tipo-flying {
+    --type-color: #728ecb;
+    --type-bg: #edf1fb;
+  }
+
+  .tipo-poison {
+    --type-color: #93449c;
+    --type-bg: #f3e9f5;
+  }
+
+  .tipo-ground {
+    --type-color: #a17b38;
+    --type-bg: #f6efdf;
+  }
+
+  .tipo-rock {
+    --type-color: #8d7942;
+    --type-bg: #f1eddf;
+  }
+
+  .tipo-bug {
+    --type-color: #699326;
+    --type-bg: #edf5df;
+  }
+
+  .tipo-ghost {
+    --type-color: #7056a0;
+    --type-bg: #eee8f6;
+  }
+
+  .tipo-steel {
+    --type-color: #647e90;
+    --type-bg: #e8eff3;
+  }
+}

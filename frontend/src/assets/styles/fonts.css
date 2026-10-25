@@ -1,0 +1,18 @@
+/* Classes de fonte (Manrope e Space Grotesk) */
+
+@layer components {
+  .font-spaceBlack {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+  }
+
+  .font-ManropeWhite {
+    font-family: "Manrope", sans-serif;
+    font-weight: 400;
+  }
+
+  .font-ManropeBlack {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+  }
+}

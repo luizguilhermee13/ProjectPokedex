@@ -1,0 +1,23 @@
+/* Estrutura geral: header, main e footer */
+
+header,
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+}
+
+main,
+footer {
+  border-top: 0px none rgba(248, 246, 242, 1);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+}

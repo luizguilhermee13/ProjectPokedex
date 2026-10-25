@@ -1,0 +1,68 @@
+/* Cabeçalho (logo, abas e contador de favoritos) */
+
+.logo h2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.logo h2::before {
+  content: "";
+  display: block;
+  background-image: url("../assets/logoPokedex.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+}
+
+/* 
+   RESPONSIVIDADE DO header
+ */
+
+header {
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 1.8vw, 1rem);
+}
+
+/* Logo */
+
+header .logo {
+  flex-shrink: 0;
+}
+
+header .logo h2 {
+  font-size: clamp(1.25rem, 3vw, 1.875rem);
+  white-space: nowrap;
+}
+
+/* Navegação */
+
+header .sections,
+header .sectionsAtivas {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: clamp(0.5rem, 2vw, 1rem);
+}
+
+header .sections {
+  min-width: 0;
+}
+
+/* Links Explorar e Favoritos */
+
+header .sectionsAtivas li {
+  font-size: clamp(0.8rem, 1.65vw, 1rem);
+  white-space: nowrap;
+}
+
+/* Contador de favoritos */
+
+header .filtro {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
